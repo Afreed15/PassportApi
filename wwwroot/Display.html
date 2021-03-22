@@ -1,0 +1,69 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Display</title>
+    <!-- CSS only -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/scripts/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/jqx-all.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://jqwidgets.com/jquery-widgets-demo/jqwidgets/styles/jqx.base.css" />
+
+</head>
+<body>
+    <script type="text/javascript">
+        $(document).ready(function () {
+
+            var source =
+            {
+                datatype: "json",
+                datafields: [
+
+
+
+                    { name: 'PPId', type: 'number' },
+                    { name: 'PPHolderName', type: 'string' },
+                    { name: 'PPNumber', type: 'string' },
+                    { name: 'PPExpiry', type: 'string' },
+                    { name: 'PPOcode', type: 'string' },
+                   
+
+                ],
+                url: 'https://localhost:44340/api/Passports'
+            }
+            var dataAdapter = new $.jqx.dataAdapter(source);
+            // displaying data in the grid with jqxGrid
+            $("#gridPassport").jqxGrid(
+                {
+                    width: 500,
+                    source: dataAdapter,
+                    pageable: true,
+                    sortable: true,
+                    columns: [
+
+
+
+                        { text: "Passport Id", datafield: "PPId", cellsalign: 'center' },
+                        { text: "Name", datafield: "PPHolderName", cellsalign: 'center' },
+                        { text: "Passport number", datafield: "PPNumber", cellsalign: 'center' },
+                        { text: "Expiry Date", datafield: "PPExpiry", cellsalign: 'center' },
+                        { text: "Code", datafield: "PPOcode", cellsalign: 'center' },
+                        
+
+                    ]
+                });
+        });
+    </script>
+    <div class="container">
+        <div class="jumbotron bg-primary text-center">
+            <h1 class="">PassPort Details </h1>
+            <p>Data from core.net api to html page</p>
+        </div>
+        <div id="gridPassport" class="container text-center m-2 p-2"></div>
+    </div>
+
+</body>
+</html>
